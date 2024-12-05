@@ -2,11 +2,11 @@
 
 class Fight
 {
-    // Properties
+    // Propriétés
     private Pokemon $pokemon1;
     private Pokemon $pokemon2;
 
-    // Constructor
+    // Constructeur
     public function __construct(
         Pokemon $pokemon1,
         Pokemon $pokemon2
@@ -15,7 +15,7 @@ class Fight
         $this->pokemon2 = $pokemon2;
     }
 
-    // Methods
+    // Méthodes
     public function startFight(): void
     {
         echo "<p>The fight begins between " . $this->pokemon1->getName() . " and " . $this->pokemon2->getName() . "!</p>";

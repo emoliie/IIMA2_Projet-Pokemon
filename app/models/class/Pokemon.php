@@ -1,9 +1,8 @@
 <?php
 
-abstract class Pokemon
-{
+abstract class Pokemon {
 
-    use HealTrait;
+    // use HealTrait;
 
     // Propriétés
     protected string $name;
@@ -46,6 +45,10 @@ abstract class Pokemon
         return $this->name;
     }
 
+    public function getType(): int
+    {
+        return $this->type;
+    }
 
     public function getHp(): int
     {
