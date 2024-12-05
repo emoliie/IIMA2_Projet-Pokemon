@@ -3,70 +3,73 @@
 abstract class Pokemon
 {
 
-    use SoinTrait;
+    use HealTrait;
 
     // Propriétés
-    protected string $nom;
+    protected string $name;
     protected string $type;
-    protected int $pointsDeVie;
-    protected int $pointsDeVieMax;
-    protected int $puissanceAttaque;
+    protected int $hp;
+    protected int $maxHp;
+    protected int $attackPower;
     protected int $defense;
-    protected string $force;
-    protected string $faiblesse;
+    protected string $strength;
+    protected string $weakness;
 
     // Statiques
     public static $bonus = 20;
-    public static $malus = 10;
+    public static $penalty = 10;
 
     // Constructeur
     public function __construct(
-        string $nom,
+        string $name,
         string $type,
-        int $pointsDeVie,
-        int $pointsDeVieMax,
-        int $puissanceAttaque,
+        int $hp,
+        int $maxHp,
+        int $attackPower,
         int $defense,
-        string $force,
-        string $faiblesse
+        string $strength,
+        string $weakness
     ) {
-        $this->nom = $nom;
+        $this->name = $name;
         $this->type = $type;
-        $this->pointsDeVie = $pointsDeVie;
-        $this->pointsDeVieMax = $pointsDeVieMax;
-        $this->puissanceAttaque = $puissanceAttaque;
+        $this->hp = $hp;
+        $this->maxHp = $maxHp;
+        $this->attackPower = $attackPower;
         $this->defense = $defense;
-        $this->force = $force;
-        $this->faiblesse = $faiblesse;
+        $this->strength = $strength;
+        $this->weakness = $weakness;
     }
 
     // Méthodes
-    public function getNom(): string {
-        return $this->nom;
-    }
-
-    public function getPointsDeVie(): int {
-        return $this->pointsDeVie;
-    }
-
-    public function attaquer(Pokemon $adversaire): void
+    public function getName(): string
     {
-        $degats = max(0, $this->puissanceAttaque - $adversaire->defense); // Le résultat ne peut pas être négatif
-        $adversaire->recevoirDegats($degats);
-        echo "<p>". $this->nom ."attaque". $adversaire->nom ."et inflige". $degats ."points de dégâts !</p>";
+        return $this->name;
     }
 
-    public function recevoirDegats(int $degats): void
+
+    public function getHp(): int
     {
-        $this->pointsDeVie = max(0, $this->pointsDeVie - $degats);
-        echo "<p>". $this->nom ."reçoit". $degats ."points de dégâts et a maintenant". $this->pointsDeVie ."points de vie.</p>";
+        return $this->hp;
     }
 
-    public function estKO(): bool
+    public function attack(Pokemon $opponent): void
     {
-        return $this->pointsDeVie === 0;
+        $damage = max(0, $this->attackPower - $opponent->defense); // Damage cannot be negative
+        $opponent->receiveDamage($damage);
+        echo "<p>" . $this->name . " attacks " . $opponent->name . " and deals " . $damage . " damage points!</p>";
+    }
+
+    public function receiveDamage(int $damage): void
+    {
+        $this->hp = max(0, $this->hp - $damage);
+        echo "<p>" . $this->name . " receives " . $damage . " damage points and now has " . $this->hp . " HP left.</p>";
+    }
+
+    public function isKO(): bool
+    {
+        return $this->hp === 0;
     }
 
     // Méthode abstraite
-    abstract public function capaciteSpeciale(Pokemon $adversaire): void;
+    abstract public function specialAbility(Pokemon $opponent): void;
 }

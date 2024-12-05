@@ -11,3 +11,5 @@ require_once './app/utils/Router.php';
  
 $router = new Router();
 $router->dispatch($_SERVER['REQUEST_URI']);
+
+echo "cc";
