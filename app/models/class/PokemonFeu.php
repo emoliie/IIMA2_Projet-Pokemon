@@ -14,6 +14,7 @@ class PokemonFeu extends Pokemon
 
     public function capaciteSpeciale(Pokemon $adversaire): void
     {
+        echo "<p>". $this->nom ."utilise Lance-Flammes sur". $adversaire->nom."!</p>";
         $degats = $this->puissanceAttaque;
         if ($adversaire->type == $this->force) {
             $degats =+ self::$bonus;

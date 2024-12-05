@@ -41,17 +41,25 @@ abstract class Pokemon
     }
 
     // Méthodes
+    public function getNom(): string {
+        return $this->nom;
+    }
+
+    public function getPointsDeVie(): int {
+        return $this->pointsDeVie;
+    }
+
     public function attaquer(Pokemon $adversaire): void
     {
         $degats = max(0, $this->puissanceAttaque - $adversaire->defense); // Le résultat ne peut pas être négatif
         $adversaire->recevoirDegats($degats);
-        echo "$this->nom attaque $adversaire->nom et inflige $degats points de dégâts !";
+        echo "<p>". $this->nom ."attaque". $adversaire->nom ."et inflige". $degats ."points de dégâts !</p>";
     }
 
     public function recevoirDegats(int $degats): void
     {
         $this->pointsDeVie = max(0, $this->pointsDeVie - $degats);
-        echo "$this->nom reçoit $degats points de dégâts et a maintenant $this->pointsDeVie points de vie.";
+        echo "<p>". $this->nom ."reçoit". $degats ."points de dégâts et a maintenant". $this->pointsDeVie ."points de vie.</p>";
     }
 
     public function estKO(): bool
