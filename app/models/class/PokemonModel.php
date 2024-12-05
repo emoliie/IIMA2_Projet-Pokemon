@@ -3,6 +3,8 @@
 class PokemonModel extends DB
 {
 
+    public static $pokemons = [];
+
     public function __construct()
     {
         parent::__construct();
@@ -14,7 +16,7 @@ class PokemonModel extends DB
         $pokemons = $this->co->prepare('SELECT * FROM Pokemon');
         $pokemons->execute();
 
-        return $pokemons->fetchAll(PDO::FETCH_CLASS, 'Pokemon'); // erreur : on ne peut pas instancier Pokemon
+        return $pokemons->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function findOneById(int $id): Pokemon | false

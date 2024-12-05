@@ -45,7 +45,7 @@ abstract class Pokemon {
         return $this->name;
     }
 
-    public function getType(): int
+    public function getType(): string
     {
         return $this->type;
     }
