@@ -40,10 +40,10 @@ class Router
                 // Appel la méthode du controleur et envoie les paramètres
                 call_user_func_array([$controller, $methodName], $params);
             } else {
-                die('<p>Méthode introuvable</p>');
+                die('<p>Method not found</p>');
             }
         } else {
-            die('<p>Controleur introuvable</p>');
+            die('<p>Controller not found</p>');
         }
     }
 }

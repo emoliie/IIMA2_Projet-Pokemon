@@ -8,15 +8,16 @@ trait Render{
     extract($data);
     // Chemin d'accès à la vue
     $viewPath = __DIR__ .'/../views/'. $view .'.php';
+    // echo $viewPath;
     
     if (file_exists($viewPath)) {
       // Mise en tampon de ce qui va suivre
       ob_start();
-      // On appel la vue
+      // On appelle la vue
       require_once $viewPath;
       // On stock dans $content ce qui a été mis en tampon et on le vide
       $content = ob_get_clean();
-      // On appel le layout qui recevra $content et les autres variable de $data
+      // On appelle le layout qui recevra $content et les autres variables de $data
       require_once __DIR__ .'/../views/'. $layout .'.php';
     }
     else {
